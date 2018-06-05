@@ -30,9 +30,9 @@
                                 </p:submenu>
                             </p:menubar>
                         </p:column>
-                        <p:column>
                         <p:outputLabel value="Bienvenido"/>
-                        </p:column>
+                        <p:outputLabel value="#{usuarioManagedBean.usuarioValidado}"/>
+                        <p:commandButton action="#{usuarioManagedBean.cerrarSesion()}" update="@form" value="Cerrar Sesion"/>
                     </h:panelGrid>
 
                 </h:form>

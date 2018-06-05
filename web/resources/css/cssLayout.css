@@ -57,5 +57,8 @@
   font-weight : bold;
   text-decoration : underline;
 }
+.panelGridCenter td,.panelGridCenter tr {
+    text-align: center;
+}
 
 

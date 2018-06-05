@@ -45,7 +45,21 @@ public class UsuarioManagedBean {
         }
         return resultado;
     }
-
+    public String getUsuarioValidado(){
+        String user=null;
+        Usuario usuario=null;
+        usuario=getListaUsuario().validarUsuario(getUsername(), getContraseña());
+        if(usuario!=null){
+            user=usuario.getUsuario();
+        }
+        return user;
+    }
+    public String cerrarSesion(){
+        String resultado="/login";
+        FacesMessage facesMessage=new FacesMessage(FacesMessage.SEVERITY_INFO,"Sesion Cerrada","Sesion Cerrada con exito");
+        FacesContext.getCurrentInstance().addMessage(null, facesMessage);
+        return resultado;
+    }
     /**
      * @return the username
      */
