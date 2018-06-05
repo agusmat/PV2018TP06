@@ -33,7 +33,7 @@
                     <p:outputLabel value="Elija marca a buscar"/>
                     <p:selectOneMenu value="#{electrodomesticoManagedBean.marcaB}" converter="omnifaces.SelectItemsConverter">
                         <f:selectItem itemLabel="Seleccion de Marca" itemValue="#{null}"/>
-                        <f:selectItems value="#{electrodomesticoManagedBean.listaMarcas.listaMarcas}" var="b" itemLabel="#{b.nombreDeMarca}" itemValue="#{b}"/> 
+                        <f:selectItems value="#{electrodomesticoManagedBean.listaMarcas.listaMarcas}" var="b" itemLabel="#{b.nombreDeMarca}" itemValue="#{b.nombreDeMarca}"/> 
                     </p:selectOneMenu>
                     <p:outputLabel/>
                     <p:commandButton value="Buscar" actionListener="#{electrodomesticoManagedBean.buscarPorMarca()}" update="@form"/>
