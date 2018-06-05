@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top">
+                <h:form id="frmMenu">
+                    <p:growl id="mensajes"/>
+                    <p:menubar id="mnOpciones">
+                        <p:submenu label="Web05">
+                            <p:menuitem value="Punto 01"/>
+                        </p:submenu>
+                        <p:submenu label="Parcial">
+                            <p:menuitem value="Punto 01" outcome="index"/>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            <ui:insert name="content">
+                <h:form id="frmInicioSesion">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Ingrese Codigo"/>
+                    <p:inputText value="#{electrodomesticoManagedBean.codigo}" required="true"/>
+                    <p:outputLabel value="Ingrese Tipo"/>
+                    <p:inputText value="#{electrodomesticoManagedBean.tipo}" required="true"/>
+                    <p:outputLabel value="Ingrese Marca"/>
+                    <p:selectOneMenu value="#{electrodomesticoManagedBean.marca}" converter="omnifaces.SelectItemsConverter">
+                        <f:selectItem itemLabel="Seleccion de Marca" itemValue="#{null}"/>
+                        <f:selectItems value="#{electrodomesticoManagedBean.listaMarcas.listaMarcas}" var="a" itemLabel="#{a.nombreDeMarca}" itemValue="#{a}"/> 
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Ingrese Fecha"/>
+                    <p:calendar value="#{electrodomesticoManagedBean.fechaA}" required="true" readonlyInput="true"/>
+                    <p:commandButton value="Reiniciar Lista" actionListener="#{electrodomesticoManagedBean.reiniciarLista()}" update="@form"/>
+                    <p:commandButton value="Agregar Lista" actionListener="#{electrodomesticoManagedBean.agregarElemento()}" update="@form"/>
+                </p:panelGrid>
+                <p:dataTable id="tblMuestraDatos" var="cadElec" value="#{electrodomesticoManagedBean.listaElec.listaElectrodomestico}" emptyMessage="No hay electrodomesticos cargados">
+                    <p:column headerText="Codigo">
+                        <p:outputLabel value="#{cadElec.codigo}"/>
+                    </p:column>
+                    <p:column headerText="Tipo">
+                        <p:outputLabel value="#{cadElec.tipo}"/>
+                    </p:column>
+                    <p:column headerText="Marca">
+                        <p:outputLabel value="#{cadElec.marca.nombreDeMarca}"/>
+                    </p:column>
+                    <p:column headerText="Fecha">
+                        <p:outputLabel value="#{cadElec.fecha}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:outputLabel>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            </ui:insert>
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">PV2018</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>
