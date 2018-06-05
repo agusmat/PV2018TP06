@@ -23,10 +23,20 @@
                         <f:selectItem itemLabel="Seleccion de Marca" itemValue="#{null}"/>
                         <f:selectItems value="#{electrodomesticoManagedBean.listaMarcas.listaMarcas}" var="a" itemLabel="#{a.nombreDeMarca}" itemValue="#{a}"/> 
                     </p:selectOneMenu>
-                    <p:outputLabel value="Ingrese Fecha"/>
+                    <p:outputLabel value="Ingrese Fecha de Alta"/>
                     <p:calendar value="#{electrodomesticoManagedBean.fechaA}" required="true" readonlyInput="true"/>
+                    <p:outputLabel value="Ingrese precio"/>
+                    <p:inputText/>
                     <p:commandButton value="Reiniciar Lista" actionListener="#{electrodomesticoManagedBean.reiniciarLista()}" update="@form"/>
                     <p:commandButton value="Agregar Lista" actionListener="#{electrodomesticoManagedBean.agregarElemento()}" update="@form"/>
+                    
+                    <p:outputLabel value="Elija marca a buscar"/>
+                    <p:selectOneMenu value="#{electrodomesticoManagedBean.marcaB}" converter="omnifaces.SelectItemsConverter">
+                        <f:selectItem itemLabel="Seleccion de Marca" itemValue="#{null}"/>
+                        <f:selectItems value="#{electrodomesticoManagedBean.listaMarcas.listaMarcas}" var="b" itemLabel="#{b.nombreDeMarca}" itemValue="#{b}"/> 
+                    </p:selectOneMenu>
+                    <p:outputLabel/>
+                    <p:commandButton value="Buscar" actionListener="#{electrodomesticoManagedBean.buscarPorMarca()}" update="@form"/>
                 </p:panelGrid>
                 <p:dataTable id="tblMuestraDatos" var="cadElec" value="#{electrodomesticoManagedBean.listaElec.listaElectrodomestico}" emptyMessage="No hay electrodomesticos cargados">
                     <p:column headerText="Codigo">
@@ -38,8 +48,24 @@
                     <p:column headerText="Marca">
                         <p:outputLabel value="#{cadElec.marca.nombreDeMarca}"/>
                     </p:column>
-                    <p:column headerText="Fecha">
+                    <p:column headerText="Fecha de Alta">
                         <p:outputLabel value="#{cadElec.fecha}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:outputLabel>
+                    </p:column>
+                </p:dataTable>
+                <p:dataTable id="tblMuestraDatosB" var="cadaElec" value="#{electrodomesticoManagedBean.listaElecB.listaElectrodomestico}" emptyMessage="No hay electrodomesticos buscados">
+                    <p:column headerText="Codigo">
+                        <p:outputLabel value="#{cadaElec.codigo}"/>
+                    </p:column>
+                    <p:column headerText="Tipo">
+                        <p:outputLabel value="#{cadaElec.tipo}"/>
+                    </p:column>
+                    <p:column headerText="Marca">
+                        <p:outputLabel value="#{cadaElec.marca.nombreDeMarca}"/>
+                    </p:column>
+                    <p:column headerText="Fecha de Alta">
+                        <p:outputLabel value="#{cadaElec.fecha}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </p:outputLabel>
                     </p:column>

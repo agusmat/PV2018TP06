@@ -31,7 +31,8 @@ public class ElectrodomesticoManagedBean {
     private ListaMarcas listaMarcas;
     private String fecha;
     private Date fechaA;
-
+    private String marcaB;
+    private ListaElectrodomestico listaElecB;
     /**
      * Creates a new instance of ElectrodomesticoManagedBean
      */
@@ -41,6 +42,7 @@ public class ElectrodomesticoManagedBean {
         listaMarcas.getListaMarcas().add(new Marca("1234", "Samsung"));
         listaMarcas.getListaMarcas().add(new Marca("1235", "Noblex"));
         listaMarcas.getListaMarcas().add(new Marca("1236", "LG"));
+        listaElecB=new ListaElectrodomestico();
     }
 
     public void agregarElemento() throws ParseException {
@@ -53,6 +55,13 @@ public class ElectrodomesticoManagedBean {
             }
         }
 
+    }
+    public void buscarPorMarca(){
+        for(int i=0;i<listaElec.getListaElectrodomestico().size();i++){
+            if(listaElec.getListaElectrodomestico().get(i).getMarca().getNombreDeMarca().equals(getMarcaB())){
+                getListaElecB().getListaElectrodomestico().add(listaElec.getListaElectrodomestico().get(i));
+            }
+        }
     }
    
 
@@ -168,5 +177,33 @@ public class ElectrodomesticoManagedBean {
      */
     public void setFechaA(Date fechaA) {
         this.fechaA = fechaA;
+    }
+
+    /**
+     * @return the marcaB
+     */
+    public String getMarcaB() {
+        return marcaB;
+    }
+
+    /**
+     * @param marcaB the marcaB to set
+     */
+    public void setMarcaB(String marcaB) {
+        this.marcaB = marcaB;
+    }
+
+    /**
+     * @return the listaElecB
+     */
+    public ListaElectrodomestico getListaElecB() {
+        return listaElecB;
+    }
+
+    /**
+     * @param listaElecB the listaElecB to set
+     */
+    public void setListaElecB(ListaElectrodomestico listaElecB) {
+        this.listaElecB = listaElecB;
     }
 }
